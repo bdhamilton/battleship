@@ -107,4 +107,41 @@ class Gameboard {
   }
 }
 
-module.exports = { Ship, Gameboard };
+class Player {
+  constructor(playerType = 'human') {
+    this.board = new Gameboard(10, 10);
+    this.playerType = playerType;
+
+    this.placeShipsRandomly();
+  }
+
+  placeShipsRandomly() {
+    // Decide how many boats we want to place, and of what sizes.
+    const boatSizes = [5, 4, 3, 3, 2];
+
+    // While there are still boats left to place:
+    while (boatSizes.length > 0) {
+      // Grab the last boat in the list.
+      const boatLength = boatSizes[boatSizes.length - 1];
+
+      // Pick a set of random coordinates and a random direction
+      const [x, y] = this.getRandomCoordinates();
+      const horizontal = Math.random() > 0.5;
+
+      // If if the coordinates work, place it and pop off the ship.
+      if (this.board.canPlaceShip(x, y, boatLength, horizontal)) {
+        this.board.placeShip(x, y, boatLength, horizontal);
+        boatSizes.pop();
+      }
+    }
+  }
+
+  getRandomCoordinates() {
+    const x = Math.floor(Math.random() * 10);
+    const y = Math.floor(Math.random() * 10);
+
+    return [x, y];
+  }
+}
+
+module.exports = { Ship, Gameboard, Player };

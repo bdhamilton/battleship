@@ -1,4 +1,4 @@
-const { Ship, Gameboard } = require('./ship.js');
+const { Ship, Gameboard, Player } = require('./ship.js');
 
 test('creates a ship of a specified length', () => {
 
@@ -62,4 +62,14 @@ test('board knows if ships still remain afloat', () => {
   game.placeShip(0, 0, 1);
 
   expect(game.allSunk()).toBe(false);
+});
+
+test('players have their own gameboards', () => {
+  const human = new Player();
+  expect(human.board).not.toBeUndefined();
+});
+
+test('players get five auto-placed ships', () => {
+  const human = new Player();
+  expect(human.board.ships.length).toBe(5);
 });
