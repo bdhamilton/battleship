@@ -1,0 +1,50 @@
+/**
+	|| Defaults 
+**/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/**
+  || Gameboard
+**/
+
+.gameboard {
+  margin: 1em;
+}
+
+.row {
+  height: 31px;
+}
+
+button {
+  background-color: lightskyblue;
+  border: 1px solid #eee;
+  width: 30px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.gameboard.opponent .square:hover {
+  cursor: pointer;
+  opacity: .8;
+}
