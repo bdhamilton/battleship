@@ -28,23 +28,172 @@ p, h1, h2, h3, h4, h5, h6 {
 **/
 
 .gameboard {
-  margin: 1em;
+  background-color: lightskyblue;
+  --square-size: 35px;
+  --offset: calc(var(--square-size) * 0.15);
+  position: relative;
+
+  width: calc(var(--square-size) * 10);
+  height: calc(var(--square-size) * 10);
+  z-index: 1;
 }
 
 .row {
-  height: 31px;
+  display: flex;
 }
 
-button {
-  background-color: lightskyblue;
-  border: 1px solid #eee;
-  width: 30px;
-  height: 30px;
-  margin: 0;
-  padding: 0;
+.square {
+  position: relative;
+  width: var(--square-size);
+  height: var(--square-size);
+  z-index: 3;
+  transition: all 0.3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2em;
+  font-weight: bold;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.gameboard.opponent .square:hover {
+.square:hover {
+  background-color: rgb(5, 81, 129);
+  opacity: .3;
   cursor: pointer;
-  opacity: .8;
+}
+
+.hit {
+  background-color: red;
+  color: rgb(0, 0, 0);
+  opacity: .5;
+}
+
+.hit:hover {
+  background-color: red;
+  opacity: .3;
+  cursor: default;
+}
+
+.ship {
+  background-color: #666;
+  height: calc(var(--square-size) * 0.7);
+  position: absolute;
+  border: 3px solid #555;
+  border-radius: 50%;
+  margin: var(--offset);
+  z-index: 2;
+}
+
+.point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  top: calc(var(--square-size) / 2);
+  left: calc(var(--square-size) / 2);
+  transform: translate(-50%, -50%);
+}
+
+.vertical {
+  transform: rotate(90deg) translateY(calc(var(--square-size) / 2 - var(--offset) - 1.5px));
+  transform-origin: calc(var(--square-size) / 2) calc(var(--square-size) / 2);
+}
+
+.length2 {
+  width: calc(var(--square-size) * 2 - calc(var(--offset) * 2));
+}
+
+.length3 {
+  width: calc(var(--square-size) * 3 - calc(var(--offset) * 2));
+}
+
+.length4 {
+  width: calc(var(--square-size) * 4 - calc(var(--offset) * 2));
+}
+
+.length5 {
+  width: calc(var(--square-size) * 5 - calc(var(--offset) * 2));
+}
+
+.row0 {
+  top: 0;
+}
+
+.row1 {
+  top: calc(var(--square-size));
+}
+
+.row2 {
+  top: calc(var(--square-size) * 2);
+}
+
+.row3 {
+  top: calc(var(--square-size) * 3);
+}
+
+.row4 {
+  top: calc(var(--square-size) * 4);
+}
+
+.row5 {
+  top: calc(var(--square-size) * 5);
+}
+
+.row6 {
+  top: calc(var(--square-size) * 6);
+}
+
+.row7 {
+  top: calc(var(--square-size) * 7);
+}
+
+.row8 {
+  top: calc(var(--square-size) * 8);
+}
+
+.row9 {
+  top: calc(var(--square-size) * 8);
+}
+
+.col0 {
+  left: 0;
+}
+
+.col1 {
+  left: calc(var(--square-size));
+}
+
+.col2 {
+  left: calc(var(--square-size) * 2);
+}
+
+.col3 {
+  left: calc(var(--square-size) * 3);
+}
+
+.col4 {
+  left: calc(var(--square-size) * 4);
+}
+
+.col5 {
+  left: calc(var(--square-size) * 5);
+}
+
+.col6 {
+  left: calc(var(--square-size) * 6);
+}
+
+.col7 {
+  left: calc(var(--square-size) * 7);
+}
+
+.col8 {
+  left: calc(var(--square-size) * 8);
+}
+
+.col9 {
+  left: calc(var(--square-size) * 8);
 }
