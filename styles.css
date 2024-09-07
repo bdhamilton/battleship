@@ -87,16 +87,6 @@ p, h1, h2, h3, h4, h5, h6 {
   z-index: 2;
 }
 
-.point {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  top: calc(var(--square-size) / 2);
-  left: calc(var(--square-size) / 2);
-  transform: translate(-50%, -50%);
-}
-
 .vertical {
   transform: rotate(90deg) translateY(calc(var(--square-size) / 2 - var(--offset) - 1.5px));
   transform-origin: calc(var(--square-size) / 2) calc(var(--square-size) / 2);

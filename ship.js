@@ -11,6 +11,11 @@ class Ship {
   isSunk() {
     return this.hits >= this.length;
   }
+
+  place(row, column, isHorizontal) {
+    this.startingCoordinates = [row, column];
+    this.isHorizontal = isHorizontal;
+  }
 }
 
 class Gameboard {
@@ -30,18 +35,19 @@ class Gameboard {
     this.ships = [];
   }
 
-  placeShip(row, column, length, horizontal = true) {
+  placeShip(row, column, length, isHorizontal = true) {
     // Can we place this ship here?
-    if (!this.canPlaceShip(row, column, length, horizontal)) {
+    if (!this.canPlaceShip(row, column, length, isHorizontal)) {
       throw new Error("Can't place this ship here.");
     }
 
     // Build a new ship and add it to the board.
     const ship = new Ship(length);
-    this.ships.push(ship);
+    ship.place(row, column, isHorizontal);        // store the coordinates on the ship
+    this.ships.push(ship);          // store the ship on the gameboard
 
     // Place it on the appropriate coordinates.
-    if (horizontal) {
+    if (isHorizontal) {
       // Add it to each column in the designated row...
       for (let i = 0; i < length; i++) {
         this.board[row][column + i] = ship;
@@ -54,9 +60,9 @@ class Gameboard {
     }
   }
 
-  canPlaceShip(row, column, length, horizontal = true) {
+  canPlaceShip(row, column, length, isHorizontal = true) {
     // Is the ship too long to fit on the board?
-    if (horizontal) {
+    if (isHorizontal) {
       if (column + length > this.width) {
         return false;
       }
@@ -67,7 +73,7 @@ class Gameboard {
     }
 
     // Are there other ships already in the way?
-    if (horizontal) {
+    if (isHorizontal) {
       // Check `length` columns in the designated row.
       for (let i = 0; i < length; i++) {
         // If we run into anything, we can't place the ship.
@@ -126,11 +132,11 @@ class Player {
 
       // Pick a set of random coordinates and a random direction
       const [x, y] = this.getRandomCoordinates();
-      const horizontal = Math.random() > 0.5;
+      const isHorizontal = Math.random() > 0.5;
 
       // If if the coordinates work, place it and pop off the ship.
-      if (this.board.canPlaceShip(x, y, boatLength, horizontal)) {
-        this.board.placeShip(x, y, boatLength, horizontal);
+      if (this.board.canPlaceShip(x, y, boatLength, isHorizontal)) {
+        this.board.placeShip(x, y, boatLength, isHorizontal);
         boatSizes.pop();
       }
     }
@@ -144,4 +150,5 @@ class Player {
   }
 }
 
-module.exports = { Ship, Gameboard, Player };
+// module.exports = { Ship, Gameboard, Player };
+export { Player };
