@@ -145,7 +145,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .row9 {
-  top: calc(var(--square-size) * 8);
+  top: calc(var(--square-size) * 9);
 }
 
 .col0 {
@@ -185,5 +185,5 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .col9 {
-  left: calc(var(--square-size) * 8);
+  left: calc(var(--square-size) * 9);
 }
