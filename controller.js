@@ -6,6 +6,7 @@ class Controller {
     this.player2 = new Player('computer');
 
     this.drawShips(1);
+    console.log(this.player1.board);
   }
 
   drawShips(player = 1) {
@@ -16,19 +17,16 @@ class Controller {
     // Build the player's ships and add them to the gamebaord
     player = player === 1 ? this.player1 : this.player2;
     player.board.ships.forEach((ship) => {
-      for (let i = 0; i < ship.length; i++) {
-        const row = ship.startingCoordinates[0];
-        const col = ship.startingCoordinates[1];
-        const verticalClass = ship.isHorizontal ? "" : " vertical";
+      const row = ship.startingCoordinates[0];
+      const col = ship.startingCoordinates[1];
 
-        const shipElement = document.createElement("div");
-        shipElement.classList.add("ship", `length${ship.length}`, `row${row}`, `col${col}`);
-        if (!ship.isHorizontal) {
-          shipElement.classList.add("vertical");
-        }
-
-        domShips.append(shipElement);
+      const shipElement = document.createElement("div");
+      shipElement.classList.add("ship", `length${ship.length}`, `row${row}`, `col${col}`);
+      if (!ship.isHorizontal) {
+        shipElement.classList.add("vertical");
       }
+
+      domShips.append(shipElement);
     });
     
   }
