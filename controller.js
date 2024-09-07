@@ -11,8 +11,7 @@ class Controller {
 
   drawShips(player = 1) {
     // Grab the ships list for the appropriate player.
-    const domSelector = player === 1 ? "#player1" : "#player2";
-    const domShips = document.querySelector(domSelector + " .ships");
+    const domShips = document.querySelector(`#player${player} .ships`);
 
     // Build the player's ships and add them to the gamebaord
     player = player === 1 ? this.player1 : this.player2;
