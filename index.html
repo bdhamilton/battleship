@@ -3,136 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
   <script src="controller.js" type="module"></script>
+  
   <title>Battleship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Outline&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h1>Battleship</h1>
+  <section class="tabletop">
+    <div id="self">
+      <h2>You</h2>
 
-  <h2>Your Board</h2>
-  <section class="gameboard" id="player1">
-    <div class="ships">
     </div>
-    <div class="row" data-row="0">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="1">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="2">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="3">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="4">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="5">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="6">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="7">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="8">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
-    </div>
-    <div class="row" data-row="9">
-      <div class="square" data-col="0"></div>
-      <div class="square" data-col="1"></div>
-      <div class="square" data-col="2"></div>
-      <div class="square" data-col="3"></div>
-      <div class="square" data-col="4"></div>
-      <div class="square" data-col="5"></div>
-      <div class="square" data-col="6"></div>
-      <div class="square" data-col="7"></div>
-      <div class="square" data-col="8"></div>
-      <div class="square" data-col="9"></div>
+
+    <div id="cpu">
+      <h2>Enemy</h2>
     </div>
   </section>
 </body>

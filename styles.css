@@ -8,6 +8,7 @@
 
 * {
   margin: 0;
+  font-family: 'Bungee Outline';
 }
 
 img, picture, video, canvas, svg {
@@ -21,6 +22,36 @@ input, button, textarea, select {
 
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
+}
+
+/**
+  || GENERAL STYLES
+**/
+
+body {
+  background-color: #ccc;
+}
+
+h1 {
+  background-color: #666;
+  border-bottom: 10px solid #666;
+  color: #ccc;
+  font-size: 4rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+h2 {
+  border-bottom: 8px solid rgb(7, 62, 97);
+  font-size: 2rem;
+  text-align: center;
+}
+
+.tabletop {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
 }
 
 /**
@@ -43,11 +74,11 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .square {
+  background-color: transparent;
   position: relative;
   width: var(--square-size);
   height: var(--square-size);
   z-index: 3;
-  transition: all 0.3s;
 
   display: flex;
   align-items: center;
@@ -56,13 +87,42 @@ p, h1, h2, h3, h4, h5, h6 {
   font-size: 2em;
   font-weight: bold;
 
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, .4);
+  opacity: .3;
 }
 
-.square:hover {
-  background-color: rgb(5, 81, 129);
-  opacity: .3;
+#cpu .square:hover {
   cursor: pointer;
+  border-color: rgba(255, 255, 255, .6);
+  opacity: .5;
+
+  background-color: red;
+  background-image: radial-gradient(circle,
+    white 0px,
+    white 1px,
+    transparent 1px,
+    transparent 2px,
+    white 2px,
+    white 3px,
+    transparent 3px,
+    transparent 4px,
+    white 4px,
+    white 5px,
+    transparent 5px,
+    transparent 6px,
+    white 6px,
+    white 7px,
+    transparent 7px
+  );
+  animation: pulse .5s linear infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: .5;
+  } to {
+    opacity: .3;
+  } 
 }
 
 .hit {
