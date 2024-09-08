@@ -19,19 +19,18 @@ class Ship {
 }
 
 class Gameboard {
-  constructor(width, height) {
+  constructor(size) {
     // Create an array of arrays to represent the gameboard.
     this.board = [];
-    for (let i = 0; i < height; i++) {
+    for (let i = 0; i < size; i++) {
       let row = [];
-      for (let j = 0; j < width; j++) {
+      for (let j = 0; j < size; j++) {
         row.push(null);
       }
       this.board.push(row);
     }
 
-    this.width = width;
-    this.height = height;
+    this.size = size;
     this.ships = [];
   }
 
@@ -63,11 +62,11 @@ class Gameboard {
   canPlaceShip(row, column, length, isHorizontal = true) {
     // Is the ship too long to fit on the board?
     if (isHorizontal) {
-      if (column + length > this.width) {
+      if (column + length > this.size) {
         return false;
       }
     } else {
-      if (row + length > this.height) {
+      if (row + length > this.size) {
         return false;
       }
     }
@@ -114,9 +113,9 @@ class Gameboard {
 }
 
 class Player {
-  constructor(playerType = 'human') {
+  constructor(playerName) {
     this.board = new Gameboard(10, 10);
-    this.playerType = playerType;
+    this.name = playerName;
 
     this.placeShipsRandomly();
   }
