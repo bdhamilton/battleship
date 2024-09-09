@@ -97,28 +97,66 @@ class ViewController {
     // Grab all enemy squares on the DOM.
     const enemySquares = document.querySelectorAll("#cpu .square");
 
-    // Add event listeners to any squares not already hit.
-    enemySquares.forEach((square) => {
-      if (!square.classList.contains("hit") && !square.classList.contains("miss")) {
-        square.addEventListener('click', this.attackSquare);
-      }
-    })
+    // Add event listeners to all squares.
+    enemySquares.forEach((square) => square.addEventListener('click', this.startTurn));
   }
 
-  attackSquare(event) {
-    const square = event.target;
-    const isHit = game.player2.board.receiveAttack(square.dataset.row, square.dataset.col);
+  takeTurn(row, col) {
+    // Attack enemy board
+    const enemyShip = this.attack("cpu", row, col);
 
-    if (isHit) {
+    // If the attack is successful, check win conditions
+    if (enemyShip && enemyShip.isSunk()) {
+      alert("You sunk the enemy's ship!");
+
+      if (this.player2.isLost()) {
+        alert("You win!");
+      }
+    }
+
+    // Initiate computer's counterattack.
+    let [ cpuRow, cpuCol ] = this.player2.getRandomCoordinates();
+    while(!this.player1.board.canReceiveAttack(cpuRow, cpuCol)) {
+      [ cpuRow, cpuCol ] = this.player2.getRandomCoordinates();
+    }
+    const myShip = this.attack("self", cpuRow, cpuCol);
+
+    if (myShip) {
+      if (myShip.isSunk()) {
+        alert("The enemy sunk your ship!");
+      }
+
+      if (this.player1.isLost()) {
+        alert("You lose!");
+      }
+    }
+  }
+
+  startTurn(event) {
+    // Attack the enemy's board
+    let { row, col } = event.target.dataset;
+    game.takeTurn(row, col);
+  }
+
+  attack(playerName, row, col) {
+    const player = playerName === "self" ? this.player1 : this.player2;
+    const ship = player.board.receiveAttack(row, col);
+    const square = document.querySelector(`#${playerName} [data-row="${row}"] [data-col="${col}"]`);
+    
+    square.removeEventListener("click", this.startTurn);
+
+    if (ship) {
       console.log("Target hit!");
       square.classList.add("hit");
+      return ship;
     } else {
       console.log("Target missed!");
       square.classList.add("miss");
+      return false;
     }
-
-    square.removeEventListener("click", game.attackSquare);
   }
+
+
 }
 
 const game = new ViewController();

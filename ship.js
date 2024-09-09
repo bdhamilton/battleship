@@ -103,8 +103,12 @@ class Gameboard {
     } else if (typeof square === 'object') {
       square.hit();
       this.board[row][column] = 'hit';
-      return true;
+      return square;
     }
+  }
+
+  canReceiveAttack(row, column) {
+    return this.board[row][column] !== "hit" && this.board[row][column] !== "miss";
   }
 
   allSunk() {
@@ -146,6 +150,10 @@ class Player {
     const y = Math.floor(Math.random() * 10);
 
     return [x, y];
+  }
+
+  isLost() {
+    return this.board.allSunk();
   }
 }
 
