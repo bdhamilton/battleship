@@ -91,7 +91,7 @@ h2 {
   opacity: .3;
 }
 
-#cpu .square:hover {
+#cpu .square:not(.hit, .miss):hover {
   cursor: pointer;
   border-color: rgba(255, 255, 255, .6);
   opacity: .5;
@@ -132,9 +132,11 @@ h2 {
 }
 
 .hit:hover {
-  background-color: red;
-  opacity: .3;
   cursor: default;
+}
+
+.miss {
+  background-color: rgb(7, 62, 97);
 }
 
 .ship {

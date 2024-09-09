@@ -99,11 +99,11 @@ class Gameboard {
 
     if (square === null) {
       this.board[row][column] = 'miss';
-      return 'miss';
+      return false;
     } else if (typeof square === 'object') {
       square.hit();
       this.board[row][column] = 'hit';
-      return 'hit';
+      return true;
     }
   }
 

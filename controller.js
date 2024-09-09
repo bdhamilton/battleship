@@ -1,6 +1,6 @@
 import { Player } from "./ship.js";
 
-class Controller {
+class ViewController {
   constructor() {
     this.player1 = new Player("self");
     this.player2 = new Player("cpu");
@@ -26,6 +26,7 @@ class Controller {
       for (let j = 0; j < boardSize; j++) {
         const square = document.createElement("div");
         square.classList.add("square");
+        square.dataset.row = i;
         square.dataset.col = j;
 
         row.append(square);
@@ -44,8 +45,10 @@ class Controller {
     tabletop.append(board);
 
     // Add the ships to the board
-    if (playerName === "self" || true) {
+    if (playerName === "self") {
       this.drawShips(playerName);
+    } else {
+      this.addListeners();
     }
   }
 
@@ -89,6 +92,33 @@ class Controller {
       }
     }
   }
+
+  addListeners() {
+    // Grab all enemy squares on the DOM.
+    const enemySquares = document.querySelectorAll("#cpu .square");
+
+    // Add event listeners to any squares not already hit.
+    enemySquares.forEach((square) => {
+      if (!square.classList.contains("hit") && !square.classList.contains("miss")) {
+        square.addEventListener('click', this.attackSquare);
+      }
+    })
+  }
+
+  attackSquare(event) {
+    const square = event.target;
+    const isHit = game.player2.board.receiveAttack(square.dataset.row, square.dataset.col);
+
+    if (isHit) {
+      console.log("Target hit!");
+      square.classList.add("hit");
+    } else {
+      console.log("Target missed!");
+      square.classList.add("miss");
+    }
+
+    square.removeEventListener("click", game.attackSquare);
+  }
 }
 
-const game = new Controller();
+const game = new ViewController();
