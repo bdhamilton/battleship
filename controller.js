@@ -68,6 +68,27 @@ class Controller {
       domShips.append(shipElement);
     });
   }
+
+  drawHits(playerName) {
+    // Grab the player and the relevant DOM board
+    const player = playerName === "self" ? this.player1 : this.player2;
+    const domBoard = document.getElementById(player.name);
+
+    // Consider each square on the gameboard.
+    for (let i = 0; i < player.board.size; i++) {
+      const row = i;
+
+      for (let j = 0; j < player.board.size; j++) {
+        const col = j;
+
+        // If a square has been hit, set the dom 
+        if (player.board[i][j] === "hit" || player.board[i][j] === "miss") {
+          const domSquare = document.querySelector(`#${player.name} [data-row="${row}]"] [data-col="${col}"]`);
+          domSquare.classList.add("hit");
+        }
+      }
+    }
+  }
 }
 
 const game = new Controller();
